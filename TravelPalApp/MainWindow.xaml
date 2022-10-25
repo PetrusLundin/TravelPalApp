@@ -1,0 +1,57 @@
+﻿<Window x:Class="TravelPalApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TravelPalApp"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="350">
+    <Grid>
+        <StackPanel>
+            <Label
+                Content="TravelPal"
+                HorizontalAlignment="Center"
+                FontSize="40"
+                />
+            <Label
+                Content="Username"
+                HorizontalAlignment="Center"
+                FontSize="15"
+                />
+            <TextBox
+                x:Name="txtUsername"
+                Width="100"
+                Height="25"
+                FontSize="20"/>
+            <Label
+                Content="Password"
+                HorizontalAlignment="Center"
+                FontSize="15"
+                />
+            <TextBox
+                x:Name="txtPassword"
+                Width="100"
+                Height="25"
+                FontSize="20"/>
+            <Label
+                Content="No account?"
+                FontSize="8"
+                HorizontalAlignment="Center"/>
+            <Button
+                x:Name="btnRegister"
+                BorderThickness="0"
+                Content="Register"
+                FontSize="8"
+                Background="Transparent"
+                Foreground="Blue"
+                Width="40"
+                />
+            <Button
+                x:Name="btnSignIn"
+                Height="25"
+                Margin="0,30,0,0"
+                Content="Sign In"
+                Width="80"/>
+        </StackPanel>
+    </Grid>
+</Window>
