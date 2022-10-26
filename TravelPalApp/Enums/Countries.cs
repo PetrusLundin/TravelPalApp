@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TravelPalApp.Enums
 {
-    internal enum Countries
+    public enum Countries
     {
         Sudan,
         Algeria,

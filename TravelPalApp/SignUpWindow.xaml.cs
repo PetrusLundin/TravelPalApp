@@ -11,6 +11,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TravelPalApp.Enums;
+using TravelPalApp.Managers;
+using TravelPalApp.Models;
 
 namespace TravelPalApp
 {
@@ -19,9 +22,41 @@ namespace TravelPalApp
     /// </summary>
     public partial class SignUpWindow : Window
     {
-        public SignUpWindow()
+        private UserManager _userManager;
+        public SignUpWindow(UserManager userManager)
         {
             InitializeComponent();
+
+            string[] getAllCountries = Enum.GetNames(typeof(Countries));
+
+            cbCountries.ItemsSource = getAllCountries;
+
+            _userManager = userManager;
         }
+
+        private void btnRegister_Click(object sender, RoutedEventArgs e)
+        {
+            User user = CreateUser();
+            if (_userManager.AddUser(user) == true)
+            {
+                MessageBox.Show("Thank you for registring");
+                this.Close();
+            }
+
+
+        }
+
+        public User CreateUser()
+        {
+            User user = new();
+            user.Username = txtUsername.Text;
+            user.Password = txtPassword.Text;
+            string country = cbCountries.SelectedItem as string;
+            Countries selectedCountries = (Countries)Enum.Parse(typeof(Countries), country);
+            user.Location = selectedCountries;
+            return user;
+        }
+
+
     }
 }

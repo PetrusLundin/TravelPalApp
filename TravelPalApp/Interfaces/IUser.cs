@@ -7,13 +7,13 @@ using TravelPalApp.Enums;
 
 namespace TravelPalApp.Interfaces
 {
-    internal interface IUser
+    public interface IUser
     {
         public string Username { get; set; }
         public string Password { get; set; }
 
-        public Countries location { get; set; }
+        public Countries Location { get; set; }
 
-       public string IUser();
+      
     }
 }

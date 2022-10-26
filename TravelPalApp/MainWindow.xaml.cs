@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TravelPalApp.Enums;
+using TravelPalApp.Managers;
 
 namespace TravelPalApp
 {
@@ -20,9 +22,29 @@ namespace TravelPalApp
     /// </summary>
     public partial class MainWindow : Window
     {
+        private UserManager userManager = new();
         public MainWindow()
-        {
+        {   
+
             InitializeComponent();
+
+            
+        }
+
+        private void btnRegister_Click(object sender, RoutedEventArgs e)
+        {
+            SignUpWindow signUpWindow = new SignUpWindow(userManager);
+            signUpWindow.Show();
+        }
+
+        private void btnSignIn_Click(object sender, RoutedEventArgs e)
+        {
+           
+           if(userManager.SignInUser(txtUsername.ToString(), txtPassword.ToString()))
+            {
+                MyPagesWindow myPagesWindow = new MyPagesWindow();
+                myPagesWindow.Show();
+            }
         }
     }
 }

@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace TravelPalApp.Enums
 {
-    internal class Class1
+    public enum TripTypes
     {
+        Leisure,
+        Work
     }
 }

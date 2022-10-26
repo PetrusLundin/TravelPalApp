@@ -44,14 +44,14 @@
                 FontSize="8"
                 Background="Transparent"
                 Foreground="Blue"
-                Width="40"
+                Width="40" Click="btnRegister_Click"
                 />
             <Button
                 x:Name="btnSignIn"
                 Height="25"
                 Margin="0,30,0,0"
                 Content="Sign In"
-                Width="80"/>
+                Width="80" Click="btnSignIn_Click"/>
         </StackPanel>
     </Grid>
 </Window>
