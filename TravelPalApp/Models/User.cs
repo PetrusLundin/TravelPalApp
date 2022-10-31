@@ -11,14 +11,20 @@ namespace TravelPalApp.Models
     public class User : IUser
     {
         public List<Travel> travels = new();
-        public int MyProperty { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
         public Countries Location { get; set; }
 
-        public string IUser()
+        public User(string username, string password, Countries location)
+        {            
+            Username = username;
+            Password = password;
+            Location = location;
+        }
+
+        public List<Travel> GetTravelList()
         {
-            return "";
+            return travels;
         }
     }
 }

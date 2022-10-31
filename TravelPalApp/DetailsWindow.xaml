@@ -1,0 +1,80 @@
+﻿<Window x:Class="TravelPalApp.DetailsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TravelPalApp"
+        mc:Ignorable="d"
+        Title="DetailsWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <Label
+            Content="Destination:"
+            Grid.Row="1"
+            Grid.Column="1"
+            FontSize="20"
+            VerticalAlignment="Center"/>
+        <Label
+            Content="Travelers:"
+            Grid.Row="2"
+            Grid.Column="1"
+            FontSize="20"
+            VerticalAlignment="Center"/>
+        <Label
+            Content="Country:"
+            Grid.Row="3"
+            Grid.Column="1"
+            FontSize="20"
+            VerticalAlignment="Center"/>
+        <Label
+            Content="TripType:"
+            Grid.Row="4"
+            Grid.Column="1"
+            FontSize="20"
+            VerticalAlignment="Center"/>
+        <Label
+            x:Name="lblDestination"
+            Grid.Row="1"
+            Grid.Column="2"
+            FontSize="18"
+            VerticalAlignment="Center"/>
+        <Label
+            x:Name="lblTravelers"
+            Grid.Row="2"
+            Grid.Column="2"
+            FontSize="20"
+            VerticalAlignment="Center"/>
+        <Label
+            x:Name="lblCountry"
+            Grid.Row="3"
+            Grid.Column="2"
+            FontSize="20"
+            VerticalAlignment="Center"/>
+        <Label
+            x:Name="lblTripType"
+            Grid.Row="4"
+            Grid.Column="2"
+            FontSize="20"
+            VerticalAlignment="Center"/>
+
+    </Grid>
+</Window>

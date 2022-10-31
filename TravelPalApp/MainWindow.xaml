@@ -10,6 +10,7 @@
         <StackPanel>
             <Label
                 Content="TravelPal"
+                FontFamily="Arial"
                 HorizontalAlignment="Center"
                 FontSize="40"
                 />
@@ -52,6 +53,12 @@
                 Margin="0,30,0,0"
                 Content="Sign In"
                 Width="80" Click="btnSignIn_Click"/>
+            <Button
+                x:Name="btnClose"
+                Content="Close"
+                FontSize="20"
+                Width="70"
+                Margin="230,120,0,0" Click="btnClose_Click"/>
         </StackPanel>
     </Grid>
 </Window>

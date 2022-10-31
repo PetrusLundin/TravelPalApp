@@ -1,0 +1,116 @@
+﻿<Window x:Class="TravelPalApp.AddVoyageWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TravelPalApp"
+        mc:Ignorable="d"
+        Title="AddVoyageWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <Label
+            Grid.Row="1"
+            Grid.Column="1"
+            Content="Destination:"            
+            FontSize="33"/>
+        <ComboBox
+            x:Name="cbCountries"
+            IsEditable="True"
+            IsReadOnly="True"
+            Text="-Select Country-" 
+            Width="185"
+            HorizontalAlignment="Center"
+            FontSize="20"
+            Grid.Row="2"
+            Grid.Column="1"
+            />
+        <Label
+           Grid.Row="3"
+            Grid.Column="1"
+            Content="Travelers:"
+            FontSize="33"
+            />
+        <ComboBox
+            x:Name="cbTripVacChoice"
+            IsEditable="True"
+            IsReadOnly="True"
+            Text="VacOrTrip"
+            Width="185"
+            HorizontalAlignment="Center"
+            FontSize="20"
+            Grid.Row="4"
+            Grid.Column="1" SelectionChanged="cbTripVacChoice_SelectionChanged" 
+            />
+        <ComboBox
+           x:Name="cbTripType"
+            Grid.Column="1"
+            Grid.Row="5"
+            IsEditable="True"
+            IsReadOnly="True"
+            Text="-TravelType-"
+            FontSize="20"
+            Visibility="Hidden"/>
+        <CheckBox
+            x:Name="xbAllinclusive"
+            Grid.Row="6"
+            Grid.Column="1"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Visibility="Hidden"
+            Content="All Inclusive"/>
+        <TextBox
+            x:Name="txtDestination"
+            Grid.Column="2"
+            Grid.Row="1"
+            FontSize="25"
+            />
+        <Label
+            x:Name="lblSelectedCountry"
+            Grid.Row="2"
+            Grid.Column="2"
+            FontSize="20"/>
+        <TextBox
+            x:Name="txtAmountOfTravelers"
+            Grid.Row="3"
+            Grid.Column="2"
+            FontSize="20"
+            />
+        <Label
+            x:Name="lblSelectedTravelType"
+            Grid.Row="4"
+            Grid.Column="2"
+            FontSize="20"/>
+        <Button
+            x:Name="btnClose"
+            Grid.Column="3"
+            Grid.Row="6"
+            Content="Close"
+            FontSize="25" Click="btnClose_Click"/>
+        <Button
+            x:Name="btnAddVoyage"
+            Grid.Column="2"
+            Grid.Row="6"
+            Content="Add Voyage"
+            FontSize="25"
+            Margin="0,0,5,0" Click="btnAddVoyage_Click"/>
+    </Grid>
+
+</Window>

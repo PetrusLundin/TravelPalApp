@@ -3,21 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TravelPalApp.Enums;
 
 namespace TravelPalApp.Models
 {
-    internal class Vacation
+    internal class Vacation : Travel
     {
-        public bool AllInclusive { get; set; }
+        public bool _AllInclusive { get; set; }
 
-        public Vacation(bool allInclusive)
+        public Vacation(bool allInclusive, string destination, Countries country, int travellers) : base(destination, country, travellers)
         {
-            AllInclusive = allInclusive;
+            _AllInclusive = allInclusive;
+            
         }
-        
-        public string GetInfo()
+
+        public override string GetInfo()
         {
-            return $"";
+            return $"{Destination}, {Travellers}, {Country}, {_AllInclusive}, {this.GetType().Name}";
         }
     }
 }

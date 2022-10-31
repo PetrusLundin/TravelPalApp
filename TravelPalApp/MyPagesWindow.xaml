@@ -9,49 +9,92 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
-            <ColumnDefinition Width="380"/>
-            <ColumnDefinition Width="380"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="20"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
-            <RowDefinition Height="205"/>
-            <RowDefinition Height="205"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Column="1" Grid.Row="1">
-            <Label
+        <Label
                 x:Name="lblWelcome"
                 FontSize="30"
-                Content="Welcome"/>
-        </StackPanel>
-        <StackPanel Grid.Column="2" Grid.Row="1">
-            <Label
-                Content="My bookings"/>
-            <ListViewItem
+                Grid.Column="1"
+                Grid.Row="1"
+                Grid.ColumnSpan="3"/>
+        <Label
+                Content="My bookings"
+                        Grid.Column="5"
+                        Grid.Row="1"
+                        Grid.ColumnSpan="3"
+                        HorizontalAlignment="center"
+                        VerticalAlignment="Center"
+                        FontSize="25"
+                        />
+        <ListView
                x:Name="lvBookings"
-                Height="180"/>
-        </StackPanel>
+                Grid.Column="5"
+                Grid.Row="2"
+                Grid.ColumnSpan="3"
+                Grid.RowSpan="3"
+                FontSize="20" SelectionChanged="lvBookings_SelectionChanged"/>
+
         <Button
-            x:Name="btnTravelSearch"
-            Content="Search Voyage"
-            Grid.Column="2"
-            Grid.Row="2"
+            x:Name="btnAddVoyage"
+            Content="Add Voyage"
+            Grid.Column="5"
+            Grid.Row="5"
             Height="30"
-            Width="90"
-            Margin="30,27,260,148"/>
+            Width="70"
+            Click="btnAddVoyage_Click" />
         <Button
             x:Name="btnVoyageDetails"
             Content="Voyage Details"
-            Grid.Column="2"
-            Grid.Row="2"
-            Height="30" Margin="145,27,145,148"/>
+            Grid.Column="6"
+            Grid.Row="5"
+            Height="30" 
+            Width="70"
+            IsEnabled="False"
+            Click="btnVoyageDetails_Click"/>
         <Button
             x:Name="btnRemoveVoyage"
             Content="Remove Voyage"
-            Grid.Column="2"
-            Grid.Row="2"
+            Grid.Column="7"
+            Grid.Row="5"
             Height="30"
-            Width="90" Margin="260,27,30,148"/>
+            Width="70" 
+            IsEnabled="False"
+            Click="btnRemoveVoyage_Click"/>
+        <Button
+            x:Name="btnUser"
+           Content="User"
+            Grid.Column="1"
+            Grid.Row="6"
+            Margin="10"/>
+        <Button
+            x:Name="btnInfo"
+           Content="Info"
+            Grid.Column="2"
+            Grid.Row="6"
+            Margin="10"/>
+        <Button
+            x:Name="btnIlogout"
+           Content="Sign Out"
+            Grid.Column="8"
+            Grid.Row="6"
+            Margin="10" Click="btnIlogout_Click"/>
     </Grid>
 </Window>

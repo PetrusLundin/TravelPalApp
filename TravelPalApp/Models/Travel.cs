@@ -13,6 +13,11 @@ namespace TravelPalApp.Models
         public Countries Country { get; set; }
         public int Travellers { get; set; }
 
+        public Travel()
+        {
+
+        }
+
 
         public Travel(string destination, Countries country, int travellers)
         {
@@ -21,7 +26,7 @@ namespace TravelPalApp.Models
             Travellers = travellers;    
         }
 
-        public string GetInfo()
+        public virtual string GetInfo()
         {
             return $"{Destination}, {Country}, Travellers: {Travellers}";
         }

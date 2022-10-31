@@ -14,9 +14,11 @@ namespace TravelPalApp.Models
         public string Password { get; set; }
         public Countries Location { get; set; }
 
-        public string IUser()
+        public Admin(string username, string password, Countries location)
         {
-            return $"";
+            Username = username;
+            Password = password;
+            Location = location;    
         }
     }
 }

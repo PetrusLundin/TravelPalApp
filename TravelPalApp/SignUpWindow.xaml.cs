@@ -32,6 +32,7 @@ namespace TravelPalApp
             cbCountries.ItemsSource = getAllCountries;
 
             _userManager = userManager;
+
         }
 
         private void btnRegister_Click(object sender, RoutedEventArgs e)
@@ -39,21 +40,22 @@ namespace TravelPalApp
             User user = CreateUser();
             if (_userManager.AddUser(user) == true)
             {
-                MessageBox.Show("Thank you for registring");
+               // MessageBox.Show("Thank you for registring");                
+                MainWindow mainWindow = new(_userManager);
+                mainWindow.Show();
                 this.Close();
             }
 
 
         }
 
-        public User CreateUser()
+        private User CreateUser()
         {
-            User user = new();
-            user.Username = txtUsername.Text;
-            user.Password = txtPassword.Text;
             string country = cbCountries.SelectedItem as string;
             Countries selectedCountries = (Countries)Enum.Parse(typeof(Countries), country);
-            user.Location = selectedCountries;
+              User user = new(txtUsername.Text,txtPassword.Text, selectedCountries);
+           
+            
             return user;
         }
 

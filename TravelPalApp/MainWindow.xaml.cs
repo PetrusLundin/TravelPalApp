@@ -22,7 +22,12 @@ namespace TravelPalApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        private UserManager userManager = new();
+        private UserManager _userManager = new();
+        public MainWindow(UserManager userManager)
+        {
+            InitializeComponent();
+            _userManager = userManager;
+        }
         public MainWindow()
         {   
 
@@ -33,18 +38,27 @@ namespace TravelPalApp
 
         private void btnRegister_Click(object sender, RoutedEventArgs e)
         {
-            SignUpWindow signUpWindow = new SignUpWindow(userManager);
+            SignUpWindow signUpWindow = new SignUpWindow(_userManager);
             signUpWindow.Show();
+            Close();
         }
 
         private void btnSignIn_Click(object sender, RoutedEventArgs e)
         {
+            string username = txtUsername.Text;
+            string password = txtPassword.Text;
            
-           if(userManager.SignInUser(txtUsername.ToString(), txtPassword.ToString()))
+           if(_userManager.SignInUser(username, password))
             {
-                MyPagesWindow myPagesWindow = new MyPagesWindow();
+                MyPagesWindow myPagesWindow = new MyPagesWindow(_userManager);
                 myPagesWindow.Show();
+                Close();
             }
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }
