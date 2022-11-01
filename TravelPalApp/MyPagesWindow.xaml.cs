@@ -38,35 +38,18 @@ namespace TravelPalApp
             {
                 _user = _userManager.SignedInUser as User;
                 lblWelcome.Content = $"Welcome {_user.Username}!";
+                
             }
             else if (_userManager.SignedInUser is Admin)
             {
                 _admin = _userManager.SignedInUser as Admin;
                 lblWelcome.Content = $"Welcome {_admin.Username}!";
                 lvBookings.Items.Clear();
-                foreach (Travel travel in _travelManager.GetTravelList())
-                {
-                    if (travel is Trip)
-                    {
-                        Trip trip = travel as Trip;
-                        ListViewItem item = new();
-                        item.Content = trip.GetInfo;
-                        item.Tag = trip;
-                        lvBookings.Items.Add(item);
-                    }
-                    if (travel is Vacation)
-                    {
-                        Vacation vacation = travel as Vacation;
-                        ListViewItem item = new();
-                        item.Content = vacation.GetInfo;
-                        item.Tag = vacation;
-                        lvBookings.Items.Add(item);
-                    }
-                }
+               
             }
-
-
             UpdateUi();
+
+
         }
         public void UpdateUi()
         {
@@ -79,7 +62,7 @@ namespace TravelPalApp
 
             if (_user.Travels == null)
             {
-                return;
+               return;
             }
             lvBookings.Items.Clear();
             foreach (Travel travel in _user.Travels)

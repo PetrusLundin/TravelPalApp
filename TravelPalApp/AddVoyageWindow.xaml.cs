@@ -81,7 +81,7 @@ namespace TravelPalApp
 
                 if (newTravel != null)
                 {
-
+                    _travelManager.GetTravelList().Add(newTravel);
                     _user.Travels.Add(newTravel);
                     _myPagesWindow.UpdateUi();
                     Close();
@@ -89,7 +89,7 @@ namespace TravelPalApp
             }
             else
             {
-                MessageBox.Show("Please maklled in properly");
+                MessageBox.Show("Please make sure all the fields are filled in properly");
             }
             
         }
