@@ -11,7 +11,7 @@ namespace TravelPalApp.Models
     {
         public string Destination { get; set; }
         public Countries Country { get; set; }
-        public int Travellers { get; set; }
+        public int Travelers { get; set; }
 
         public Travel()
         {
@@ -23,12 +23,12 @@ namespace TravelPalApp.Models
         {
             Destination = destination;
             Country = country;
-            Travellers = travellers;    
+            Travelers = travellers;    
         }
 
         public virtual string GetInfo()
         {
-            return $"{Destination}, {Country}, Travellers: {Travellers}";
+            return $"{Destination}, {Country}, Travellers: {Travelers}";
         }
     }
 }

@@ -10,7 +10,7 @@ namespace TravelPalApp.Models
 {
     public class User : IUser
     {
-        public List<Travel> travels = new();
+        public List<Travel> Travels = new();
         public string Username { get; set; }
         public string Password { get; set; }
         public Countries Location { get; set; }
@@ -24,7 +24,7 @@ namespace TravelPalApp.Models
 
         public List<Travel> GetTravelList()
         {
-            return travels;
+            return Travels;
         }
     }
 }

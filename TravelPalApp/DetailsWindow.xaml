@@ -5,21 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TravelPalApp"
         mc:Ignorable="d"
-        Title="DetailsWindow" Height="450" Width="800">
+        Title="DetailsWindow" Height="450" Width="400" Background="MintCream">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="20"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
-            <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
@@ -32,49 +27,67 @@
             Grid.Row="1"
             Grid.Column="1"
             FontSize="20"
-            VerticalAlignment="Center"/>
+            VerticalAlignment="Center"
+            Foreground="MediumSlateBlue"/>
         <Label
+            Foreground="MediumSlateBlue"
             Content="Travelers:"
             Grid.Row="2"
             Grid.Column="1"
             FontSize="20"
             VerticalAlignment="Center"/>
         <Label
+            Foreground="MediumSlateBlue"
             Content="Country:"
             Grid.Row="3"
             Grid.Column="1"
             FontSize="20"
             VerticalAlignment="Center"/>
         <Label
-            Content="TripType:"
+            Foreground="MediumSlateBlue"
+            Content="Trip/Vacation:"
             Grid.Row="4"
             Grid.Column="1"
             FontSize="20"
             VerticalAlignment="Center"/>
         <Label
+            Foreground="MediumSlateBlue"
             x:Name="lblDestination"
             Grid.Row="1"
             Grid.Column="2"
-            FontSize="18"
+            FontSize="20"
             VerticalAlignment="Center"/>
         <Label
+            Foreground="MediumSlateBlue"
             x:Name="lblTravelers"
             Grid.Row="2"
             Grid.Column="2"
             FontSize="20"
             VerticalAlignment="Center"/>
         <Label
+            Foreground="MediumSlateBlue"
             x:Name="lblCountry"
             Grid.Row="3"
             Grid.Column="2"
             FontSize="20"
             VerticalAlignment="Center"/>
         <Label
-            x:Name="lblTripType"
+            Foreground="MediumSlateBlue"
+            x:Name="lblTripVacation"
             Grid.Row="4"
             Grid.Column="2"
             FontSize="20"
             VerticalAlignment="Center"/>
+        <Label
+            Foreground="MediumSlateBlue"
+            x:Name="lblSpeciale"
+            Grid.Row="5"
+            Grid.Column="2"
+            Grid.ColumnSpan="2"
+            FontSize="20"
+            VerticalAlignment="Center"
+            />
+
 
     </Grid>
 </Window>

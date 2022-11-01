@@ -5,16 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TravelPalApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="350">
+        Title="MainWindow" Height="500" Width="370" Background="MintCream">
     <Grid>
         <StackPanel>
             <Label
+                Foreground="MediumSlateBlue"
                 Content="TravelPal"
                 FontFamily="Arial"
                 HorizontalAlignment="Center"
                 FontSize="40"
                 />
+            <Image Width="130" Height="130">
+                <Image.Source>
+                    <BitmapImage DecodePixelWidth="500" UriSource="/Images/Travelpic.webp"/>
+                </Image.Source>
+            </Image>
             <Label
+                Foreground="MediumSlateBlue"
                 Content="Username"
                 HorizontalAlignment="Center"
                 FontSize="15"
@@ -23,8 +30,10 @@
                 x:Name="txtUsername"
                 Width="100"
                 Height="25"
-                FontSize="20"/>
+                FontSize="20"
+                Background="MintCream"/>
             <Label
+                Foreground="MediumSlateBlue"
                 Content="Password"
                 HorizontalAlignment="Center"
                 FontSize="15"
@@ -33,32 +42,38 @@
                 x:Name="txtPassword"
                 Width="100"
                 Height="25"
+                Background="MintCream"
                 FontSize="20"/>
-            <Label
-                Content="No account?"
-                FontSize="8"
-                HorizontalAlignment="Center"/>
-            <Button
-                x:Name="btnRegister"
-                BorderThickness="0"
-                Content="Register"
-                FontSize="8"
-                Background="Transparent"
-                Foreground="Blue"
-                Width="40" Click="btnRegister_Click"
-                />
+            
             <Button
                 x:Name="btnSignIn"
                 Height="25"
-                Margin="0,30,0,0"
+                Margin="0,10,0,20"
                 Content="Sign In"
+                Background="MediumSlateBlue"
+                Foreground="MintCream"
                 Width="80" Click="btnSignIn_Click"/>
+            <Label
+                Foreground="MediumSlateBlue"
+                Content="No account?"
+                FontSize="10"
+                HorizontalAlignment="Center"/>
+            <Button
+                x:Name="btnRegister"
+                Content="Register"
+                FontSize="13"
+                Background="MediumSlateBlue"
+                Width="60" Click="btnRegister_Click"
+                Foreground="MintCream"
+                />
             <Button
                 x:Name="btnClose"
                 Content="Close"
-                FontSize="20"
+                FontSize="15"
                 Width="70"
-                Margin="230,120,0,0" Click="btnClose_Click"/>
+                Margin="270,35,0,0" Click="btnClose_Click"
+                Background="MediumSlateBlue"
+                Foreground="MintCream"/>
         </StackPanel>
     </Grid>
 </Window>

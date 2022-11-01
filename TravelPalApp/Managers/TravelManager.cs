@@ -10,7 +10,7 @@ namespace TravelPalApp.Managers
 {
     public class TravelManager
     {
-        public List<Travel> travels;
+        private List<Travel> Travels;
 
         public Travel AddTravel(string destination, Countries country, int travellers, TripTypes tripType) // Skapar trip
         {
@@ -23,11 +23,11 @@ namespace TravelPalApp.Managers
 
         public void removeTravel(Travel travel)
         {
-            travels.Remove(travel);
+            Travels.Remove(travel);
         }
         public List<Travel> GetTravelList()
         {
-            return travels;
+            return Travels;
         }
     }
 }

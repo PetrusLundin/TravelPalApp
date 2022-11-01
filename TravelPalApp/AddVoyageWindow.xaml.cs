@@ -48,40 +48,50 @@ namespace TravelPalApp
 
         private void btnAddVoyage_Click(object sender, RoutedEventArgs e)
         {
-            string country = cbCountries.SelectedItem as string;
-            string destination = txtDestination.Text;
-            Countries selectedCountry = (Countries)Enum.Parse(typeof(Countries), country);
-
-            try
-            {            
-                int travellers = int.Parse(txtAmountOfTravelers.Text);
-
-                if(this.selectedTravelType == "Trip")
-                {
-                    string tripTypeString = cbTripType.SelectedItem.ToString();
-                    TripTypes tripType = (TripTypes)Enum.Parse(typeof(TripTypes), tripTypeString);
-
-                    newTravel = this._travelManager.AddTravel(destination, selectedCountry, travellers, tripType);
-                }
-                else if (this.selectedTravelType == "Vacation")
-                {
-                    bool allInclusive = (bool)xbAllinclusive.IsChecked;
-
-                    newTravel = this._travelManager.AddTravel(destination, selectedCountry, travellers, allInclusive);
-                }
-
-            }
-            catch(Exception ex)
+            if (!string.IsNullOrWhiteSpace(txtDestination.Text) && !string.IsNullOrWhiteSpace(txtAmountOfTravelers.Text))
             {
-                MessageBox.Show(ex.Message);
-            }
+                try
+                {
+                    string country = cbCountries.SelectedItem as string;
+                    string destination = txtDestination.Text;
+                    Countries selectedCountry = (Countries)Enum.Parse(typeof(Countries), country);
 
-            if(newTravel != null)
-            {
-                _user.travels.Add(newTravel); // TODO: Check if this is the right user 
-                _myPagesWindow.UpdateUi();
-                Close();
+
+                    int travellers = int.Parse(txtAmountOfTravelers.Text);
+
+                    if (selectedTravelType == "Trip")
+                    {
+                        string tripTypeString = cbTripType.SelectedItem.ToString();
+                        TripTypes tripType = (TripTypes)Enum.Parse(typeof(TripTypes), tripTypeString);
+
+                        newTravel = _travelManager.AddTravel(destination, selectedCountry, travellers, tripType);
+                    }
+                    else if (selectedTravelType == "Vacation")
+                    {
+                        bool allInclusive = (bool)xbAllinclusive.IsChecked;
+
+                        newTravel = _travelManager.AddTravel(destination, selectedCountry, travellers, allInclusive);
+                    }
+
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Please make sure all the fields are filled in properly");
+                }
+
+                if (newTravel != null)
+                {
+
+                    _user.Travels.Add(newTravel);
+                    _myPagesWindow.UpdateUi();
+                    Close();
+                }
             }
+            else
+            {
+                MessageBox.Show("Please maklled in properly");
+            }
+            
         }
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {

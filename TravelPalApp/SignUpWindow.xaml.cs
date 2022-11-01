@@ -23,7 +23,8 @@ namespace TravelPalApp
     public partial class SignUpWindow : Window
     {
         private UserManager _userManager;
-        public SignUpWindow(UserManager userManager)
+        TravelManager _travelManager;
+        public SignUpWindow(UserManager userManager, TravelManager travelManager)
         {
             InitializeComponent();
 
@@ -32,7 +33,7 @@ namespace TravelPalApp
             cbCountries.ItemsSource = getAllCountries;
 
             _userManager = userManager;
-
+            _travelManager = travelManager;
         }
 
         private void btnRegister_Click(object sender, RoutedEventArgs e)
@@ -40,23 +41,25 @@ namespace TravelPalApp
             User user = CreateUser();
             if (_userManager.AddUser(user) == true)
             {
-               // MessageBox.Show("Thank you for registring");                
-                MainWindow mainWindow = new(_userManager);
+                // MessageBox.Show("Thank you for registring");                
+                MainWindow mainWindow = new(_userManager, _travelManager);
                 mainWindow.Show();
                 this.Close();
             }
 
 
         }
-
+            
+        
         private User CreateUser()
         {
+
             string country = cbCountries.SelectedItem as string;
-            Countries selectedCountries = (Countries)Enum.Parse(typeof(Countries), country);
-              User user = new(txtUsername.Text,txtPassword.Text, selectedCountries);
-           
-            
+            Countries selectedCountry = (Countries)Enum.Parse(typeof(Countries), country);
+            User user = new(txtUsername.Text, txtPassword.Text, selectedCountry);
+
             return user;
+
         }
 
 

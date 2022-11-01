@@ -23,10 +23,10 @@ namespace TravelPalApp.Managers
 
             User user = new("Gandalf", "password", Enums.Countries.Barbados);
             users.Add(user);
-            Travel travel1 = new("Trombi", Enums.Countries.Cuba, 1);
-            user.travels.Add(travel1);            
-            Travel travel2 = new("Mormor", Enums.Countries.Ghana, 2);
-            user.travels.Add(travel2);
+            Vacation travel1 = new(false,"Trombi", Enums.Countries.Cuba, 1);
+            user.Travels.Add(travel1);
+            Trip travel2 = new( Enums.TripTypes.Leisure, "Mormor", Enums.Countries.Ghana, 2);
+            user.Travels.Add(travel2);
 
 
         }
@@ -54,9 +54,35 @@ namespace TravelPalApp.Managers
                 users.Remove(user);
             }
         }
-        //Update 
+        //checks if the username can be updated
         public bool UpdateUsername(IUser user, string username)
         {
+            if(username.Length <3)
+            {
+                MessageBox.Show("Username have to be longer motherfucker!");
+                return false;
+            }
+            else if (ValidateUsername(username) == false)
+            {                
+                return false;
+            }
+            
+            return true;
+        }
+        //checks if the password can be updated
+        public bool UpdatePassword(IUser user, string password)
+        {
+            if(password.Length <5)
+            {
+                MessageBox.Show("Password need to have atleast 5 symbols");
+                return false;
+            }
+            else if (!ValidatePassword(password))
+            {
+                MessageBox.Show("That password is taken");
+                return false;
+            }
+            
             return true;
         }
         // Checks if the username is occupado
@@ -64,6 +90,10 @@ namespace TravelPalApp.Managers
         {
             foreach (IUser user in users)
             {
+                if(username.Length <3)
+                {
+                    MessageBox.Show("Username too short");
+                }
                 if ( username == user.Username)
                 {
                     MessageBox.Show("Username is taken..");
@@ -71,7 +101,7 @@ namespace TravelPalApp.Managers
                 }       
             }
             return true;
-        }
+        }      
 
         //Checks if the password is occupado
         private bool ValidatePassword(string password)

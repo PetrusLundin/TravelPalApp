@@ -23,19 +23,44 @@ namespace TravelPalApp
     public partial class DetailsWindow : Window
     {
         Travel _travel;
-        public DetailsWindow(Travel travel)
+        UserManager _userManager;
+        TravelManager _travelManager;
+        public DetailsWindow(Travel travel, UserManager userManager, TravelManager travelManager)
         {
             InitializeComponent();
             _travel = travel;
+            _userManager = userManager;
+            _travelManager = travelManager;
+
             lblDestination.Content = travel.Destination;
             lblCountry.Content = travel.Country;
-            lblTravelers.Content = travel.Travellers;
+            lblTravelers.Content = travel.Travelers;
+
+
+
+            if (travel is Trip)
+            {
+                Trip trip = travel as Trip;
+                lblTripVacation.Content = typeof(Trip).Name;
+                lblSpeciale.Content = $"Trip type: {trip.TripType.ToString()}";
+            }
+            else if (travel is Vacation)
+            {
+                Vacation vacation = travel as Vacation;
+                lblTripVacation.Content = typeof(Vacation).Name;
+                if (vacation._AllInclusive == true)
+                {
+                    lblSpeciale.Content = $"All inclusive: Yes";
+                }
+                else
+                {
+                    lblSpeciale.Content = $"All inclusive: No";
+                }
+            }
+            
 
             
         }
-        private void DecideTravelType()
-        {
-            
-        }
+        
     }
 }

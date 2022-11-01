@@ -5,48 +5,49 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TravelPalApp"
         mc:Ignorable="d"
-        Title="SignUpWindow" Height="450" Width="350">
+        Title="SignUpWindow" Height="450" Width="350" Background="MintCream">
     <Grid>
         <StackPanel>
+            <Image Width="130" Height="130" Margin="0,40,0,0">
+                <Image.Source>
+                    <BitmapImage DecodePixelWidth="500" UriSource="/Images/SignUpContract.webp"/>
+                </Image.Source>
+            </Image>
             <Label
+                Foreground="MediumSlateBlue"
                 Content="Username"
                 HorizontalAlignment="Center"
                 />
             <TextBox
                 x:Name="txtUsername"
                 Height="20"
-                Width="100"/>
+                Width="100"
+                Background="MintCream"/>            
             <Label
-                x:Name="lblCheckUsername"
-                HorizontalAlignment="Center"
-                FontSize="10"
-                Foreground="Red"
-                Height="13"
-                />
-            <Label
+                Foreground="MediumSlateBlue"
                 Content="Password"
                 HorizontalAlignment="Center"
                 />
             <TextBox
                 x:Name="txtPassword"
                 Height="20"
-                Width="100"/>
-            <Label
-                x:Name="lblCheckPassword"
-                HorizontalAlignment="Center"
-                FontSize="10"
-                Foreground="Red"
-                Content="Errrrorrr"
-                Height="13"/>
+                Width="100"
+                Background="MintCream"/>
             <ComboBox
                 x:Name="cbCountries"
-                Width="120"
-                Margin="0,10,0,0"/>
+                Width="110"
+                Margin="0,10,0,0"
+                IsEditable="True"
+            IsReadOnly="True"
+            Text="Select Country" 
+                Background="MintCream"/>
             <Button
+                Foreground="MintCream"
                 x:Name="btnRegister"
                 Content="Register"
                 Width=" 80"
-                Margin="0,20,0,0" Click="btnRegister_Click"/>
+                Margin="0,20,0,0" Click="btnRegister_Click"
+                Background="MediumSlateBlue"/>
         </StackPanel>
     </Grid>
 </Window>

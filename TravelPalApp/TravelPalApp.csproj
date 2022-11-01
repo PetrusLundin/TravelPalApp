@@ -7,4 +7,16 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Images\GlobeQ.png" />
+    <None Remove="Images\SignUpContract.webp" />
+    <None Remove="Images\Travelpic.webp" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\GlobeQ.png" />
+    <Resource Include="Images\SignUpContract.webp" />
+    <Resource Include="Images\Travelpic.webp" />
+  </ItemGroup>
+
 </Project>

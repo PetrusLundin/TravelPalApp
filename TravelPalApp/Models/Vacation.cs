@@ -19,7 +19,7 @@ namespace TravelPalApp.Models
 
         public override string GetInfo()
         {
-            return $"{Destination}, {Travellers}, {Country}, {_AllInclusive}, {this.GetType().Name}";
+            return $"{Destination}, {Travelers}, {Country}, {_AllInclusive}, {this.GetType().Name}";
         }
     }
 }

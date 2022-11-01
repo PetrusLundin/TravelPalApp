@@ -21,17 +21,18 @@ namespace TravelPalApp
     /// </summary>
     public partial class MyPagesWindow : Window
     {
-        
+
         private UserManager _userManager;
         private User _user;
         private Admin _admin;
-        private TravelManager _travelManager = new();
-            
-        public MyPagesWindow(UserManager userManager)
+        private TravelManager _travelManager;
+
+        public MyPagesWindow(UserManager userManager, TravelManager travelManager)
         {
             InitializeComponent();
             _userManager = userManager;
-                        
+            _travelManager = travelManager;
+
 
             if (_userManager.SignedInUser is User)
             {
@@ -42,29 +43,46 @@ namespace TravelPalApp
             {
                 _admin = _userManager.SignedInUser as Admin;
                 lblWelcome.Content = $"Welcome {_admin.Username}!";
+                lvBookings.Items.Clear();
+                foreach (Travel travel in _travelManager.GetTravelList())
+                {
+                    if (travel is Trip)
+                    {
+                        Trip trip = travel as Trip;
+                        ListViewItem item = new();
+                        item.Content = trip.GetInfo;
+                        item.Tag = trip;
+                        lvBookings.Items.Add(item);
+                    }
+                    if (travel is Vacation)
+                    {
+                        Vacation vacation = travel as Vacation;
+                        ListViewItem item = new();
+                        item.Content = vacation.GetInfo;
+                        item.Tag = vacation;
+                        lvBookings.Items.Add(item);
+                    }
+                }
             }
-           
-            
+
+
             UpdateUi();
         }
         public void UpdateUi()
         {
-           
-           
-            
-            //foreach (Travel travel in travels)
-            //{
-            //    if(_userManager.SignedInUser == _user)
-            //    {
+            if (_userManager.SignedInUser is User)
+            {
+                _user = _userManager.SignedInUser as User;
+                lblWelcome.Content = $"Welcome {_user.Username}!";
+            }
 
-            //    }
-            //}
-            if (_user.travels == null)
+
+            if (_user.Travels == null)
             {
                 return;
             }
             lvBookings.Items.Clear();
-            foreach (Travel travel in _user.travels)
+            foreach (Travel travel in _user.Travels)
             {
                 Travel travel1 = travel as Travel;
                 ListViewItem item = new();
@@ -78,24 +96,24 @@ namespace TravelPalApp
         {
             ListViewItem booking = lvBookings.SelectedItem as ListViewItem;
             Travel selectedTravel = booking.Tag as Travel;
-            DetailsWindow detailsWindow = new(selectedTravel);
+            DetailsWindow detailsWindow = new(selectedTravel, _userManager, _travelManager);
             detailsWindow.Show();
         }
 
         private void btnRemoveVoyage_Click(object sender, RoutedEventArgs e)
         {
             ListViewItem selectedBooking = lvBookings.SelectedItem as ListViewItem;
-            Travel selectedTravel = selectedBooking.Tag as Travel;          
-                        
+            Travel selectedTravel = selectedBooking.Tag as Travel;
+
             MessageBoxResult result = MessageBox.Show("Are you sure you want to remove this booking", "You sure?", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No);
             switch (result)
             {
                 case MessageBoxResult.Yes:
-                    _user.travels.Remove(selectedTravel);
+                    _user.Travels.Remove(selectedTravel);
                     break;
                 case MessageBoxResult.No:
                     break;
-                    
+
             }
             UpdateUi();
         }
@@ -112,11 +130,17 @@ namespace TravelPalApp
             btnVoyageDetails.IsEnabled = true;
         }
 
-        private void btnIlogout_Click(object sender, RoutedEventArgs e)
+        private void btnSignOut_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mainWindow = new(_userManager);
+            MainWindow mainWindow = new(_userManager, _travelManager);
             mainWindow.Show();
             this.Close();
+        }
+
+        private void btnUser_Click(object sender, RoutedEventArgs e)
+        {
+            UserDetailsWindow userDetailsWindow = new(this, _userManager, _travelManager);
+            userDetailsWindow.Show();
         }
     }
 }
