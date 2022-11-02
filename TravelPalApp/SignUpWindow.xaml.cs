@@ -38,27 +38,36 @@ namespace TravelPalApp
 
         private void btnRegister_Click(object sender, RoutedEventArgs e)
         {
-            User user = CreateUser();
-            if (_userManager.AddUser(user) == true)
+            try
             {
-                // MessageBox.Show("Thank you for registring");                
-                MainWindow mainWindow = new(_userManager, _travelManager);
-                mainWindow.Show();
-                this.Close();
+                User user = CreateUser();
+                if (_userManager.AddUser(user) == true)
+                {
+                    // MessageBox.Show("Thank you for registring");                
+                    MainWindow mainWindow = new(_userManager, _travelManager);
+                    mainWindow.Show();
+                    this.Close();
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
 
 
         }
             
-        
+        // Crates a user
         private User CreateUser()
         {
+            
+                string country = cbCountries.SelectedItem as string;
+                Countries selectedCountry = (Countries)Enum.Parse(typeof(Countries), country);
+                User user = new(txtUsername.Text, txtPassword.Text, selectedCountry);
 
-            string country = cbCountries.SelectedItem as string;
-            Countries selectedCountry = (Countries)Enum.Parse(typeof(Countries), country);
-            User user = new(txtUsername.Text, txtPassword.Text, selectedCountry);
-
-            return user;
+                return user;
+           
+            
 
         }
 

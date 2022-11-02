@@ -13,6 +13,8 @@ namespace TravelPalApp.Models
         public Countries Country { get; set; }
         public int Travelers { get; set; }
 
+        public int ID { get; set; } = Math.Abs(Guid.NewGuid().GetHashCode());
+
         public Travel()
         {
 

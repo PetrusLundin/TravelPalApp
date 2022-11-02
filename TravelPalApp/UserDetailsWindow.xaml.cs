@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -43,30 +44,39 @@ namespace TravelPalApp
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            string newUsername = txtUsername.Text;
-            string newPassword = txtPassword.Text;
-            string confirmPassword = txtConfirmPassword.Text;
-            if (newPassword == confirmPassword)
+            try
             {
-                if (_userManager.UpdateUsername(_user, newUsername) && _userManager.UpdatePassword(_user, newPassword) == true)
+                string newUsername = txtUsername.Text;
+                string newPassword = txtPassword.Text;
+                string confirmPassword = txtConfirmPassword.Text;
+                if (newPassword == confirmPassword)
                 {
-                    _user.Username = txtUsername.Text;
-                    _user.Password = txtPassword.Text;
+                    if (_userManager.UpdateUsername(_user, newUsername) && _userManager.UpdatePassword(_user, newPassword) == true)
+                    {
+                        
 
-                    string country = cbCountry.SelectedItem as string;
-                    Countries selectedCountry = (Countries)Enum.Parse(typeof(Countries), country);
-                    _user.Location = selectedCountry;
-                    MessageBox.Show("User has been updated");
-                    _myPagesWindow.UpdateUi();
-                    Close();
+                        string country = cbCountry.SelectedItem as string;
+                        Countries selectedCountry = (Countries)Enum.Parse(typeof(Countries), country);
+                        _user.Location = selectedCountry;
+                        _user.Username = txtUsername.Text;
+                        _user.Password = txtPassword.Text;
+                        MessageBox.Show("User has been updated");
+                        _myPagesWindow.UpdateUi();
+                        Close();
+                    }
+
+
+
                 }
-                
+                else
+                {
+                    MessageBox.Show("The passwords must be the same");
+                }
 
-                
             }
-            else
+            catch (Exception)
             {
-                MessageBox.Show("The passwords must be the same");
+                MessageBox.Show("Please select the coun");
             }
             
         }

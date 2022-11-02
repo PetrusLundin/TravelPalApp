@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,13 +24,32 @@ namespace TravelPalApp.Managers
 
             User user = new("Gandalf", "password", Enums.Countries.Barbados);
             users.Add(user);
+
             Vacation travel1 = new(false,"Trombi", Enums.Countries.Cuba, 1);
             user.Travels.Add(travel1);
+
             Trip travel2 = new( Enums.TripTypes.Leisure, "Mormor", Enums.Countries.Ghana, 2);
             user.Travels.Add(travel2);
-
-
         }
+
+        public List<IUser> GetUsers()
+        {
+            return this.users;
+        }
+        public List<Travel> GetTravels()
+        {
+            List<Travel> allTravels = new();
+            foreach(IUser user in users)
+            {
+                if (user is User)
+                {
+                    User currentUser = user as User;
+                    allTravels.AddRange(currentUser.Travels);                    
+                }
+            }
+            return allTravels;
+        }
+
         
 
         //Adds a user to the list if username and password are free
@@ -88,12 +108,14 @@ namespace TravelPalApp.Managers
         // Checks if the username is occupado
         private bool ValidateUsername(string username)
         {
+            if (username.Length < 3)
+            {
+                MessageBox.Show("Username too short");
+                return false;
+            }
             foreach (IUser user in users)
             {
-                if(username.Length <3)
-                {
-                    MessageBox.Show("Username too short");
-                }
+                
                 if ( username == user.Username)
                 {
                     MessageBox.Show("Username is taken..");
@@ -106,6 +128,11 @@ namespace TravelPalApp.Managers
         //Checks if the password is occupado
         private bool ValidatePassword(string password)
         {
+            if(password.Length < 5)
+            {
+                MessageBox.Show("Password too short");
+                return false;
+            }
             foreach (IUser user in users)
             {
                 if (password == user.Password)
@@ -133,10 +160,6 @@ namespace TravelPalApp.Managers
             
         }
 
-        // Gets the list of users
-        public List<IUser> GetUserList()
-        {
-            return users;
-        }
+        
     }
 }

@@ -13,7 +13,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TravelPalApp.Enums;
+using TravelPalApp.Interfaces;
 using TravelPalApp.Managers;
+using TravelPalApp.Models;
 
 namespace TravelPalApp
 {
@@ -22,20 +24,32 @@ namespace TravelPalApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        private UserManager _userManager = new();
-        private TravelManager _travelManager = new();
+        private UserManager _userManager;
+        private TravelManager _travelManager;
         public MainWindow(UserManager userManager, TravelManager travelManager)
         {
             InitializeComponent();
             _userManager = userManager;
             _travelManager = travelManager;
+
+
         }
         public MainWindow()
         {   
-
             InitializeComponent();
 
-            
+            _userManager = new();
+            _travelManager = new();
+
+            foreach (IUser user in _userManager.GetUsers())
+            {
+                if (user is User)
+                {
+                    User u = user as User;
+
+                    _travelManager.Travels.AddRange(u.Travels);
+                }
+            }
         }
 
         private void btnRegister_Click(object sender, RoutedEventArgs e)

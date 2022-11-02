@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TravelPalApp.Interfaces;
 using TravelPalApp.Managers;
 using TravelPalApp.Models;
 
@@ -21,10 +22,9 @@ namespace TravelPalApp
     /// </summary>
     public partial class MyPagesWindow : Window
     {
-
+        
         private UserManager _userManager;
-        private User _user;
-        private Admin _admin;
+        private IUser _user;
         private TravelManager _travelManager;
 
         public MyPagesWindow(UserManager userManager, TravelManager travelManager)
@@ -32,46 +32,39 @@ namespace TravelPalApp
             InitializeComponent();
             _userManager = userManager;
             _travelManager = travelManager;
+            _user = _userManager.SignedInUser;
 
-
-            if (_userManager.SignedInUser is User)
-            {
-                _user = _userManager.SignedInUser as User;
-                lblWelcome.Content = $"Welcome {_user.Username}!";
-                
-            }
-            else if (_userManager.SignedInUser is Admin)
-            {
-                _admin = _userManager.SignedInUser as Admin;
-                lblWelcome.Content = $"Welcome {_admin.Username}!";
-                lvBookings.Items.Clear();
-               
-            }
-            UpdateUi();
-
-
+            UpdateUi();   
         }
+
+        //Updates the Window with the right informtion
         public void UpdateUi()
         {
-            if (_userManager.SignedInUser is User)
-            {
-                _user = _userManager.SignedInUser as User;
-                lblWelcome.Content = $"Welcome {_user.Username}!";
-            }
+            lvBookings.Items.Clear();   
+            lblWelcome.Content = $"Welcome {_user.Username}!";
 
+            if (_user is User)
+            {
+                User signedInUser = _user as User;
 
-            if (_user.Travels == null)
-            {
-               return;
+                foreach (Travel travel in signedInUser.Travels)
+                {
+                    ListViewItem item = new();
+                    item.Content = travel.Destination;
+                    item.Tag = travel;
+                    lvBookings.Items.Add(item);
+                }
             }
-            lvBookings.Items.Clear();
-            foreach (Travel travel in _user.Travels)
+            else if(_user is Admin)
             {
-                Travel travel1 = travel as Travel;
-                ListViewItem item = new();
-                item.Content = travel.Destination;
-                item.Tag = travel1;
-                lvBookings.Items.Add(item);
+                foreach(Travel travel in _travelManager.Travels)
+                {
+                    ListViewItem item = new();
+                    item.Content = travel.Destination;
+                    item.Tag = travel;
+                    lvBookings.Items.Add(item);
+
+                }
             }
         }
 
@@ -92,7 +85,22 @@ namespace TravelPalApp
             switch (result)
             {
                 case MessageBoxResult.Yes:
-                    _user.Travels.Remove(selectedTravel);
+
+                    _travelManager.RemoveTravel(selectedTravel);
+
+                    foreach(IUser user in _userManager.GetUsers())
+                    {
+                        if(user is User)
+                        {
+                            User u = user as User;
+
+                            if(u.Travels.Contains(selectedTravel))
+                            {
+                                u.Travels.Remove(selectedTravel);
+                            }
+                        }
+                    }
+
                     break;
                 case MessageBoxResult.No:
                     break;
@@ -103,7 +111,8 @@ namespace TravelPalApp
 
         private void btnAddVoyage_Click(object sender, RoutedEventArgs e)
         {
-            AddVoyageWindow addVoyageWindow = new(_user, _travelManager, this);
+            User user = _user as User;
+            AddVoyageWindow addVoyageWindow = new(user, _travelManager, this);
             addVoyageWindow.Show();
         }
 

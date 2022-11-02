@@ -10,18 +10,22 @@ namespace TravelPalApp.Managers
 {
     public class TravelManager
     {
-        private List<Travel> Travels = new();
+        public List<Travel> Travels = new();
 
         public Travel AddTravel(string destination, Countries country, int travellers, TripTypes tripType) // Skapar trip
         {
-            return new Trip(tripType, destination, country, travellers);
+            Trip trip = new Trip(tripType, destination, country, travellers);
+            Travels.Add(trip);
+            return trip;
         }
         public Travel AddTravel(string destination, Countries country, int travellers, bool allInclusive) // Skapar vacation
         {
-            return new Vacation(allInclusive, destination, country, travellers);
+            Vacation vacation = new Vacation(allInclusive, destination, country, travellers);
+            Travels.Add(vacation);
+            return vacation;
         }
 
-        public void removeTravel(Travel travel)
+        public void RemoveTravel(Travel travel)
         {
             Travels.Remove(travel);
         }

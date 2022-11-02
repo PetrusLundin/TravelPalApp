@@ -14,7 +14,7 @@ namespace TravelPalApp.Models
         {
             TripType = tripType;
         }
-
+        // method that returns a string of info of a Trip
         public override string GetInfo()
         {
             return $"{Destination}, {Travelers}, {Country}, {TripType}";

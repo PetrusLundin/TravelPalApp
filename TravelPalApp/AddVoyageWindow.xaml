@@ -84,7 +84,9 @@
             Grid.Column="2"
             Grid.Row="1"
             FontSize="25"
-            Background="MintCream"
+            VerticalAlignment="Center"
+            Background="MintCream" 
+            
             />
         <Label
             x:Name="lblSelectedCountry"
@@ -96,6 +98,7 @@
             Grid.Row="3"
             Grid.Column="2"
             FontSize="20"
+            VerticalAlignment="Center"
             Background="MintCream"
             />
         <Label

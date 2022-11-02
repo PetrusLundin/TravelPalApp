@@ -81,7 +81,6 @@ namespace TravelPalApp
 
                 if (newTravel != null)
                 {
-                    _travelManager.GetTravelList().Add(newTravel);
                     _user.Travels.Add(newTravel);
                     _myPagesWindow.UpdateUi();
                     Close();
