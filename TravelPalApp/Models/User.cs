@@ -16,15 +16,11 @@ namespace TravelPalApp.Models
         public Countries Location { get; set; }
 
         public User(string username, string password, Countries location)
-        {            
+        {
             Username = username;
             Password = password;
             Location = location;
         }
 
-        public List<Travel> GetTravelList()
-        {
-            return Travels;
-        }
     }
 }

@@ -37,7 +37,7 @@ namespace TravelPalApp
             UpdateUi();   
         }
 
-        //Updates the Window with the right informtion
+        //Updates the Window with the correct uptodate informtion
         public void UpdateUi()
         {
             lvBookings.Items.Clear();   
@@ -60,7 +60,7 @@ namespace TravelPalApp
                 foreach(Travel travel in _travelManager.Travels)
                 {
                     ListViewItem item = new();
-                    item.Content = travel.Destination;
+                    item.Content = $"{travel.Destination}";
                     item.Tag = travel;
                     lvBookings.Items.Add(item);
 
@@ -133,6 +133,12 @@ namespace TravelPalApp
         {
             UserDetailsWindow userDetailsWindow = new(this, _userManager, _travelManager);
             userDetailsWindow.Show();
+        }
+
+        private void btnInfo_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Den här appen hjälper dig att hålla ordning på alla dina resor som du har planerat.\n\n" +
+                "TravelPal är ett företag med kunden i fokus som vill att våra användare ska få den bästa upplevelsen när de planerar sina resor. ");
         }
     }
 }

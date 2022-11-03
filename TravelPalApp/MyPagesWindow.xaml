@@ -104,7 +104,7 @@
             Grid.Row="6"
             Margin="10"
             Background="MediumSlateBlue"
-            Foreground="MintCream"/>
+            Foreground="MintCream" Click="btnInfo_Click"/>
         <Button
             x:Name="btnSignout"
            Content="Sign Out"

@@ -36,21 +36,7 @@ namespace TravelPalApp.Managers
         {
             return this.users;
         }
-        public List<Travel> GetTravels()
-        {
-            List<Travel> allTravels = new();
-            foreach(IUser user in users)
-            {
-                if (user is User)
-                {
-                    User currentUser = user as User;
-                    allTravels.AddRange(currentUser.Travels);                    
-                }
-            }
-            return allTravels;
-        }
-
-        
+               
 
         //Adds a user to the list if username and password are free
         public bool AddUser(IUser user)
@@ -66,14 +52,7 @@ namespace TravelPalApp.Managers
             }
            
         }
-        // Removes a user from the list
-        public void RemoveUser(IUser user)
-        {
-            if (users.Contains(user))
-            {
-                users.Remove(user);
-            }
-        }
+       
         //checks if the username can be updated
         public bool UpdateUsername(IUser user, string username)
         {

@@ -100,7 +100,7 @@ namespace TravelPalApp
 
         private void cbTripVacChoice_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            this.selectedTravelType = cbTripVacChoice.SelectedItem as string;
+            selectedTravelType = cbTripVacChoice.SelectedItem as string;
             
             if(selectedTravelType == "Trip")
             {

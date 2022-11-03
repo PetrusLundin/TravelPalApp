@@ -49,15 +49,15 @@ namespace TravelPalApp
                     this.Close();
                 }
             }
-            catch(Exception ex)
+            catch(Exception)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Please make sure you have filled in all the fields correct");
             }
 
 
         }
             
-        // Crates a user
+        // Creates a user
         private User CreateUser()
         {
             

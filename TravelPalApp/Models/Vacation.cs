@@ -16,7 +16,7 @@ namespace TravelPalApp.Models
             _AllInclusive = allInclusive;
             
         }
-
+        // method that returns a string of info of a Vacation
         public override string GetInfo()
         {
             return $"{Destination}, {Travelers}, {Country}, {_AllInclusive}, {this.GetType().Name}";

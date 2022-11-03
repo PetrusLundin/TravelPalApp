@@ -70,13 +70,13 @@ namespace TravelPalApp
                 }
                 else
                 {
-                    MessageBox.Show("The passwords must be the same");
+                    MessageBox.Show("You fool! The passwords must be the same");
                 }
 
             }
             catch (Exception)
             {
-                MessageBox.Show("Please select the coun");
+                MessageBox.Show("Please select the country you're from.");
             }
             
         }
