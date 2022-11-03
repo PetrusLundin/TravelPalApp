@@ -19,7 +19,7 @@ namespace TravelPalApp.Managers
         public UserManager()
         {
 
-            Admin admin = new("Admin", "password", Enums.Countries.Haiti);            
+            Admin admin = new("admin", "password", Enums.Countries.Haiti);            
             users.Add(admin);
 
             User user = new("Gandalf", "password", Enums.Countries.Barbados);
