@@ -72,43 +72,59 @@ namespace TravelPalApp
 
         private void btnVoyageDetails_Click(object sender, RoutedEventArgs e)
         {
-            ListViewItem booking = lvBookings.SelectedItem as ListViewItem;
-            Travel selectedTravel = booking.Tag as Travel;
-            DetailsWindow detailsWindow = new(selectedTravel, _userManager, _travelManager);
-            detailsWindow.Show();
+            if (lvBookings.SelectedItem == null)
+            {
+                MessageBox.Show("No travel selected");
+                return;
+            }
+            else
+            {
+                ListViewItem booking = lvBookings.SelectedItem as ListViewItem;
+                Travel selectedTravel = booking.Tag as Travel;
+                DetailsWindow detailsWindow = new(selectedTravel, _userManager, _travelManager);
+                detailsWindow.Show();
+            }
         }
 
         private void btnRemoveVoyage_Click(object sender, RoutedEventArgs e)
         {
-            ListViewItem selectedBooking = lvBookings.SelectedItem as ListViewItem;
-            Travel selectedTravel = selectedBooking.Tag as Travel;
-
-            MessageBoxResult result = MessageBox.Show("Are you sure you want to remove this booking", "You sure?", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No);
-            switch (result)
+            if (lvBookings.SelectedItem == null)
             {
-                case MessageBoxResult.Yes:
+                MessageBox.Show("No travel selected");
+                return;
+            }
+            else
+            {
+                ListViewItem selectedBooking = lvBookings.SelectedItem as ListViewItem;
+                Travel selectedTravel = selectedBooking.Tag as Travel;
 
-                    _travelManager.RemoveTravel(selectedTravel);
+                MessageBoxResult result = MessageBox.Show("Are you sure you want to remove this booking", "You sure?", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No);
+                switch (result)
+                {
+                    case MessageBoxResult.Yes:
 
-                    foreach(IUser user in _userManager.GetUsers())
-                    {
-                        if(user is User)
+                        _travelManager.RemoveTravel(selectedTravel);
+
+                        foreach (IUser user in _userManager.GetUsers())
                         {
-                            User u = user as User;
-
-                            if(u.Travels.Contains(selectedTravel))
+                            if (user is User)
                             {
-                                u.Travels.Remove(selectedTravel);
+                                User u = user as User;
+
+                                if (u.Travels.Contains(selectedTravel))
+                                {
+                                    u.Travels.Remove(selectedTravel);
+                                }
                             }
                         }
-                    }
 
-                    break;
-                case MessageBoxResult.No:
-                    break;
+                        break;
+                    case MessageBoxResult.No:
+                        break;
 
+                }
+                UpdateUi();
             }
-            UpdateUi();
         }
 
         private void btnAddVoyage_Click(object sender, RoutedEventArgs e)
@@ -118,11 +134,7 @@ namespace TravelPalApp
             addVoyageWindow.Show();
         }
 
-        private void lvBookings_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            btnRemoveVoyage.IsEnabled = true;
-            btnVoyageDetails.IsEnabled = true;
-        }
+        
 
         private void btnSignOut_Click(object sender, RoutedEventArgs e)
         {
