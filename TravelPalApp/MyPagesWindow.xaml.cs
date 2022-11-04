@@ -42,6 +42,7 @@ namespace TravelPalApp
         {
             lvBookings.Items.Clear();   
             lblWelcome.Content = $"Welcome {_user.Username}!";
+            
 
             if (_user is User)
             {
@@ -57,6 +58,7 @@ namespace TravelPalApp
             }
             else if(_user is Admin)
             {
+                btnAddVoyage.IsEnabled = false;
                 foreach(Travel travel in _travelManager.Travels)
                 {
                     ListViewItem item = new();

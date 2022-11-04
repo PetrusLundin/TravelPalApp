@@ -52,13 +52,14 @@ namespace TravelPalApp
             }
         }
 
+        // Button for openng the Sign up window
         private void btnRegister_Click(object sender, RoutedEventArgs e)
         {
             SignUpWindow signUpWindow = new SignUpWindow(_userManager, _travelManager);
             signUpWindow.Show();
             Close();
         }
-
+        // Button for opening the MyPage window
         private void btnSignIn_Click(object sender, RoutedEventArgs e)
         {
             string username = txtUsername.Text;

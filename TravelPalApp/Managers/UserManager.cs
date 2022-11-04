@@ -25,7 +25,7 @@ namespace TravelPalApp.Managers
             User user = new("Gandalf", "password", Enums.Countries.Barbados);
             users.Add(user);
 
-            Vacation travel1 = new(false,"Trombi", Enums.Countries.Cuba, 1);
+            Vacation travel1 = new(false,"Farfar", Enums.Countries.Cuba, 1);
             user.Travels.Add(travel1);
 
             Trip travel2 = new( Enums.TripTypes.Leisure, "Mormor", Enums.Countries.Ghana, 2);
@@ -112,14 +112,7 @@ namespace TravelPalApp.Managers
                 MessageBox.Show("Password too short");
                 return false;
             }
-            foreach (IUser user in users)
-            {
-                if (password == user.Password)
-                {
-                    MessageBox.Show("Password is taken..");
-                    return false;                    
-                }
-            }
+            
             return true;
         }
         //If the user exist in the list of users we log in!
