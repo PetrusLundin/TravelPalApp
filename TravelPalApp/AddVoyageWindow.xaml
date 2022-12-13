@@ -27,7 +27,7 @@
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
         <Label
-            Grid.Row="1"
+            Grid.Row="2"
             Grid.Column="1"
             Content="Destination:"            
             FontSize="33"
@@ -40,7 +40,7 @@
             Width="185"
             HorizontalAlignment="Center"
             FontSize="20"
-            Grid.Row="2"
+            Grid.Row="1"
             Grid.Column="1"
             Background="MediumSlateBlue"
             />
@@ -82,7 +82,7 @@
         <TextBox
             x:Name="txtDestination"
             Grid.Column="2"
-            Grid.Row="1"
+            Grid.Row="2"
             FontSize="25"
             VerticalAlignment="Center"
             Background="MintCream" 
@@ -90,7 +90,7 @@
             />
         <Label
             x:Name="lblSelectedCountry"
-            Grid.Row="2"
+            Grid.Row="1"
             Grid.Column="2"
             FontSize="20"/>
         <TextBox
